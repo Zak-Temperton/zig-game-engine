@@ -14,8 +14,10 @@ pub fn build(b: *std.Build) void {
     // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall. Here we do not
     // set a preferred release mode, allowing the user to decide how to optimize.
     const optimize = b.standardOptimizeOption(.{});
+
     const zmath_dep = b.dependency("zmath", .{});
     const zstbi_dep = b.dependency("zmath", .{});
+    const glfw_dep = b.dependency("mach_glfw", .{});
 
     const lib = b.addStaticLibrary(.{
         .name = "game-engine",
@@ -27,6 +29,7 @@ pub fn build(b: *std.Build) void {
     });
     lib.root_module.addImport("zmath", zmath_dep.module("root"));
     lib.root_module.addImport("zstbi", zstbi_dep.module("root"));
+    lib.root_module.addImport("mach-glfw", glfw_dep.module("mach-glfw"));
 
     // This declares intent for the library to be installed into the standard
     // location when the user invokes the "install" step (the default step when
