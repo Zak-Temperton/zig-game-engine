@@ -17,7 +17,7 @@ pub fn build(b: *std.Build) !void {
     ge.addImport("zmath", zmath_dep.module("root"));
     ge.addImport("zstbi", zstbi_dep.module("root"));
     ge.addAnonymousImport("gl", .{
-        .root_source_file = .{ .path = "ge/gl4v6.zig" },
+        .root_source_file = .{ .path = "lib/gl4v6.zig" },
     });
     ge.addLibraryPath(.{ .path = "lib" });
     ge.addIncludePath(.{ .path = "include" });
