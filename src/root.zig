@@ -1,10 +1,7 @@
 const std = @import("std");
 const testing = std.testing;
 
-export fn add(a: i32, b: i32) i32 {
-    return a + b;
-}
-
-test "basic add functionality" {
-    try testing.expect(add(3, 7) == 10);
-}
+pub const Camera = @import("Camera.zig");
+pub const BufferedRenderer = @import("BufferedRenderer.zig");
+pub const Shader = @import("Shader.zig");
+pub const Window = @import("Window.zig");
