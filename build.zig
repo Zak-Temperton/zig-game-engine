@@ -11,9 +11,16 @@ pub fn build(b: *std.Build) !void {
     const zmath_dep = b.dependency("zmath", .{});
     const zstbi_dep = b.dependency("zstbi", .{});
 
-    _ = b.addModule("root", .{
+    const ge = b.addModule("game-engine", .{
         .root_source_file = .{ .path = "src/root.zig" },
     });
+    ge.addImport("zmath", zmath_dep.module("root"));
+    ge.addImport("zstbi", zstbi_dep.module("root"));
+    ge.addAnonymousImport("gl", .{
+        .root_source_file = .{ .path = "ge/gl4v6.zig" },
+    });
+    ge.addLibraryPath(.{ .path = "lib" });
+    ge.addIncludePath(.{ .path = "include" });
 
     const lib = b.addStaticLibrary(.{
         .name = "game-engine",
